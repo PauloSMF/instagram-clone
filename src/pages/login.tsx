@@ -2,9 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import FirebaseContext from "../context/firebase";
 //Rotas
-import * as ROUTES from '../constants/routes'
+import * as ROUTES from '../constants/routes';
+//Firebase translator
+import { setLanguage, getTranslation } from 'firebase-error-translator';
 
 export default function Login() {
+    setLanguage('pt');
     //Navegação
     const navigate = useNavigate();
     //Contexto
@@ -27,10 +30,7 @@ export default function Login() {
         } catch(err: any) {
             setEmail('');
             setPassword('');
-            //Erros
-            if(err.message === 'Firebase: There is no user record corresponding to this identifier. The user may have been deleted. (auth/user-not-found).') {
-                setError('Não há usuário cadastrado com o email fornecido.')
-            }
+            setError(getTranslation(err.code));
         }
     };
 
@@ -49,7 +49,7 @@ export default function Login() {
             </div>
             <div className="flex flex-col w-2/5">
                 <div className="flex flex-col bg-white p-4 border border-gray-primary
-                    mb-4">
+                    mb-4 pt-4">
                     <h1 className="flex justify-center w-full mb-10">
                         <img 
                             src="images/logo.png" 

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import FirebaseContext from "../context/firebase";
 //Rotas
 import * as ROUTES from '../constants/routes';
@@ -10,6 +10,7 @@ export default function Login() {
     setLanguage('pt');
     //Navegação
     const navigate = useNavigate();
+    const [ searchParams ] = useSearchParams();
     //Contexto
     const { firebase } = useContext(FirebaseContext);
     //Dados de autenticação
@@ -40,13 +41,13 @@ export default function Login() {
     }, []);
 
     return (
-        <div className="container flex mx-auto max-w-screen-md items-center h-screen">
-            <div className="flex w-3/5">
+        <div className="container flex justify-center mx-auto max-w-screen-md items-center h-screen">
+            {!searchParams.has('source')  && <div className="flex w-3/5">
                 <img 
                     src="images/iphone-with-profile.jpg" 
                     alt="Instagram em dispositivo móvel"
                 />
-            </div>
+            </div>}
             <div className="flex flex-col w-2/5">
                 <div className="flex flex-col bg-white p-4 border border-gray-primary
                     mb-4 pt-4">
@@ -64,7 +65,7 @@ export default function Login() {
                             placeholder="Email"
                             type="text"
                             id="email"
-                            className="bg-gray-background text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 
+                            className="bg-gray-background text-xs text-gray-base w-full mr-3 py-5 px-4 h-2 
                             border border-gray-primary rounded mb-2"
                             onChange={({ target }) => setEmail(target.value)}
                         />
@@ -73,7 +74,7 @@ export default function Login() {
                             placeholder="Senha"
                             type="password"
                             id="password"
-                            className=" bg-gray-background text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 
+                            className=" bg-gray-background text-xs text-gray-base w-full mr-3 py-5 px-4 h-2 
                             border border-gray-primary rounded mb-2"
                             onChange={({ target }) => setPassword(target.value)}
                         />

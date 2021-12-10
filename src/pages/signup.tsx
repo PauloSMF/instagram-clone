@@ -4,12 +4,12 @@ import FirebaseContext from "../context/firebase";
 //Rotas
 import * as ROUTES from '../constants/routes';
 //Firebase translator
-import { setLanguage } from 'firebase-error-translator';
+//import { setLanguage } from 'firebase-error-translator';
 //Services
 import { doesUsernameExist } from "../services/firebase";
 
 export default function SignUp() {
-    setLanguage('pt');
+    //setLanguage('pt');
     //Navegação
     const navigate = useNavigate();
     //Contexto

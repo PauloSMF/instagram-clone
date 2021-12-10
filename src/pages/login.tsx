@@ -4,10 +4,10 @@ import FirebaseContext from "../context/firebase";
 //Rotas
 import * as ROUTES from '../constants/routes';
 //Firebase translator
-import { setLanguage, getTranslation } from 'firebase-error-translator';
+//import { setLanguage, getTranslation } from 'firebase-error-translator';
 
 export default function Login() {
-    setLanguage('pt');
+    //setLanguage('pt');
     //Navegação
     const navigate = useNavigate();
     const [ searchParams ] = useSearchParams();
@@ -31,7 +31,7 @@ export default function Login() {
         } catch(err: any) {
             setEmail('');
             setPassword('');
-            setError(getTranslation(err.code));
+            setError(err.message);
         }
     };
 

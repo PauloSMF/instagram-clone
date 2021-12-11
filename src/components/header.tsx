@@ -81,7 +81,26 @@ export default function Header() {
                         </div>
                         </>
                     ) : (
-                      <></>  
+                      <>
+                        <Link to={ROUTES.LOGIN}>
+                            <button 
+                                type="button"
+                                className="bg-blue-medium font-bold text-sm rounded 
+                                text-white w-20 h-8"
+                            >
+                                Entrar
+                            </button>
+                        </Link>
+                        <Link to={ROUTES.SIGN_UP}>
+                            <button 
+                                type="button"
+                                className="font-bold text-sm rounded 
+                                text-blue-medium w-20 h-8 ml-4"
+                            >
+                                Cadastre-se
+                            </button>
+                        </Link>
+                      </>  
                     )}
                 </div>
             </div>

@@ -1,5 +1,7 @@
 import React from "react";
-import useUser from "../hooks/use-user";
+import useUser from "../../hooks/use-user";
+import Suggestions from "./suggestions";
+import User from "./user";
 
 export default function Sidebar() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -7,6 +9,8 @@ export default function Sidebar() {
 
     return (
         <div className="p-4">
+            <User username={username} fullName={fullName} />
+            <Suggestions />
         </div>
     );
 }

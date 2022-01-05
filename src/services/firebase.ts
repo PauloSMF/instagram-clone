@@ -1,3 +1,4 @@
+import { profile } from 'console';
 import { firebase } from '../lib/firebase';
 
 //Verificando se existe o nome de usuário no firestore
@@ -25,4 +26,22 @@ export async function getUserByUserId(userId: string) {
     }));
 
     return user;
+}
+
+export async function getSuggestedProfiles(userId: string, following: string[]) {
+    const response = await firebase
+            .firestore()
+            .collection('users')
+            .limit(10)
+            .get();
+    
+    const suggestedProfiles = response.docs.map((user) => ({
+        userId: user.data().userId,
+        ...user.data(),
+        docId: user.id
+    })).filter((profile) =>
+        profile.userId !== userId && !following.includes(profile.userId)
+    );
+
+    return suggestedProfiles;
 }
